@@ -44,6 +44,6 @@ If you have any questions or inquiries regarding the Firebase Dream App, please 
 
 - Name: ZAIN KHAN 25
 - Email: zainarfeen87@gmail.com
-- LinkedIn: [https://www.linkedin.com/in/zain-khan-21992026a/]
+- LinkedIn: [My Linkedin Profile](https://www.linkedin.com/in/zain-khan-21992026a/)
 
 Thank you for your interest in the Firebase Dream App. We hope you enjoy exploring and utilizing this social media platform!
