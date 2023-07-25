@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&family=Roboto:wght@700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.firstcontainer{
+    width: 100vw;
+    height: 95.5vh;
+    background-color: #f1f2f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#firstcontainerchild1{
+    padding: 3%;
+}
+
+#firstcontainerchild2{
+    margin-right: 3%;
+
+}
+
+.inputlogin{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 24px;
+    padding-top: 10px;
+    border-radius: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 400px;
+    height: 400px;
+    margin-bottom: 20px;
+    box-shadow: 2px 1px 10px rgba( 00, 00, 00 , 30%);
+}
+
+.logininput{
+    border-radius: 8px;
+    width: 100%;
+    padding: 20px 15px;
+    border: 1px solid rgba( 00, 00, 00 , 30%);
+}
+
+.logininput::placeholder{
+    font-size: medium;
+    font-weight: 200;
+}
+
+/* .logininput{
+    border: 1px solid lightskyblue;
+} */
+
+.logIn{
+    width: 100%;
+    border-radius: 8px;
+    background-color: #1b73f1;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    font-size: large;
+    color: white;
+    font-weight: bold;
+}
+
+.createaccount{
+    border-radius: 8px;
+    border: none;
+    background-color: #3fb82a;
+    width: 60%;
+    padding: 20px;
+    font-size: larger;
+    color: white;
+    transition: .2s ease-in-out;
+}
+
+.createaccount:hover{
+    background-color: #349024;
+}
+
+.secondContainer{
+    margin: 3%;
+}
+
+a{
+    margin: 5px;
+    text-decoration: none !important;
+    color: #646464;
+    width: max-content !important;
+}
+
+table{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    flex-wrap: wrap !important;
+}
+
+.none{
+    display: none !important;
+}
+
+.modalbody{
+    position: absolute;
+    background-color: rgba( 255, 255, 255 ,70%);
+    top: 0;
+    width:100vw;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.modalcontent{
+    max-width: 80%;
+    min-width: 10%;
+    height: 80%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 2px 1px 10px rgba( 00, 00, 00 , 30%);
+    padding: 10px 1%;
+    
+}
+
+.header1ofmcontent{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputsignup{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.inputsignup input[type=text]{
+    width: 48%;
+    height: 35px;
+    padding: 0px 5px;
+}
+
+.mobilenumsignup{
+    width: 100%;
+    height: 35px;
+    padding: 0px 5px;
+    margin-top: 10px;
+}
+
+.newpasswordsignup{
+    width: 100%;
+    height: 35px;
+    padding: 0px 5px;
+    margin-top: 10px;
+}
+
+.inputDOBinsignup{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.inputDOBinsignup select{
+    width: 32%;
+    padding: 5px 8px;
+}
+
+.borderonepx{
+    border: 1px solid rgba(0, 0, 0, 30%);
+    /* padding: 10px 20px;
+    width: 32%;*/
+    padding: 5px 8px; 
+    /* border-radius: 8px; */
+    display: flex;
+    align-items: center;
+    width: 45%;
+    justify-content: space-between;
+    font-size: large;
+}
+
+.genderinputsignup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.signupbtn{
+    margin-left: 20%;
+    border-radius: 8px;
+    border: none;
+    background-color: #3fb82a;
+    width: 60%;
+    padding: 8px 20px;
+    font-size: larger;
+    color: white;
+    transition: .2s ease-in-out;
+}
+
+.signupbtn:hover{
+    background-color: #349024;
+}
+
+.removeoverflow{
+    overflow: hidden;
+}
+
+.fluidcontainer span{
+    color: #646464;
+    margin-right: 10px;
+    text-decoration: underline;
+}
+
+@media (max-width: 873px) {
+    .firstcontainer{
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 540px) {
+    .secondContainer{
+        margin-top: 3%;
+        margin-bottom: 1%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+}
+
+@media (max-width: 420px) {
+    .inputlogin{
+        width: 90vw;
+    }
+}
+@media (max-width: 360px) {
+    .facebook{
+        font-size: 50px !important;
+    }
+
+    .otherwordoffacebook{
+        font-size: 20px !important;
+    }
+
+    .fluidcontainer span{
+        font-size: 15px;
+    }
+
+    .createaccount{
+        width: 100%;
+        font-size: 16px;
+    }
+}

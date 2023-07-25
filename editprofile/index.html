@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../Dashbord/style.css">
+</head>
+<style>
+</style>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" style="font-size: 35px; font-weight: bold;" href="../Dashbord/index.html">DREAM</a>
+        <div class="searchArea">
+            <input type="text" class="inputtextsearch" placeholder="search here">
+            <input type="button" class="search" value="Search">
+        </div>
+        <div class="alagchezen">
+            <a class="nav-link active" href="../Dashbord/index.html">Home</a>
+            <a class="nav-link active" href="../Profile/index.html">My Profile</a>
+            <a class="nav-link dropdown-toggle navbarScrollingDropdowntag">
+                <i class="fa-solid fa-caret-down"></i>
+                <img style="z-index: 13;" src="../assests/avatar.png" class="avatarDummy loginuserpostimage loginpersonpic" alt="">
+
+                <div class="dropdownkeclickperanewalelist">
+                    <a class="dropdown-item none logoutbtn">Logout</a>
+                    <a class="dropdown-item none">ABOUT</a>
+                    <a class="dropdown-item none">SHORTS</a>
+                    <a href="../editprofile/index.html" class="dropdown-item none">Edit Profile</a>
+                </div>
+            </a>
+        </div>
+    </nav>
+    <div style="line-height: 1.6; margin-top:10vh; padding: 3%; background-color:rgb(221, 221, 221); width:max-content; margin-left: auto;margin-right:auto;">
+
+        <h1>Edit Profile</h1>
+        <h3>First Name</h3>
+        <input type="text" id="firestName">
+        <h3>Sur Name</h3>
+        <input type="text" id="surName">
+        <h3>Date Of Birth</h3>
+        <div class="inputDOBinsignup">
+            <input placeholder="date" id="dateofbirthdate" type="number">
+            <select id="dateofbirthmonth">
+            </select>
+            <input placeholder="year" id="dateofbirthyear" type="number">
+        </div>
+        <h3>Gender</h3>
+        <select id="gender"></select>
+        <h3>Profiel Picture</h3>
+        <input type="file" Accept=".png,.jpg" id="profilepic">
+
+
+        <input id="submit" class="nextpagebtn" type="submit" value="Submit">
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script src="app2.js"></script>
+</body>
+
+</html>
