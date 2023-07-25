@@ -11,7 +11,7 @@ Welcome to the Firebase Dream App repository! This repository contains the sourc
 
 ## Live Demo
 
-To see the Firebase Dream App in action, visit the [live demo](https://zainkhan25.github.io/Firebase-Dream-App/) and explore its features.
+To see the Firebase Dream App in action, visit the [live demo](https://zainkhan25dreamapp.web.app/) and explore its features.
 
 ## Installation
 
