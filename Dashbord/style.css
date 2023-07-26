@@ -54,6 +54,7 @@ body {
 
 .navbar .alagchezen a {
   margin-right: 10px;
+  display: block;
 }
 
 .navbar .menu-toggle {
