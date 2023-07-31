@@ -1,4 +1,4 @@
-import { db, auth, collection, updateDoc, addDoc, onAuthStateChanged, signOut, getDoc, getDocs, deleteDoc } from "../firebasconfig.js";
+import { db, auth, collection, updateDoc, addDoc, onAuthStateChanged, signOut, getDoc, getDocs, deleteDoc, serverTimestamp,orderBy,query } from "../firebasconfig.js";
 
 import { doc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
@@ -94,9 +94,8 @@ async function postHandler() {
           email: mobilenumsignup,
           userNameu: iFirstName + " " + iSurnameName,
           description: "No description Added",
-          date: new Date().getTime(),
-          uniqueid: uniqueid,
-          profilepic: isLoggedInUser.profilepic || '../assests/avatar.png'
+          timestamp: serverTimestamp(),
+          uniqueid: uniqueid
         });
         // console.log("Document written with ID: ", docRef.id);
       } catch (e) {
@@ -261,61 +260,103 @@ async function thecurrentusertwoisloggedin() {
 
 displayPosts();
 
+function timeAgo(timestamp) {
+  const currentTime = new Date().getTime();
+  const postTime = timestamp.toMillis(); // Assuming `timestamp` is a Firestore Timestamp object
+
+  const timeDifference = currentTime - postTime;
+
+  const seconds = timeDifference / 1000;
+  if (seconds < 60) {
+    return `${Math.floor(seconds)} seconds ago`;
+  }
+
+  const minutes = seconds / 60;
+  if (minutes < 60) {
+    return `${Math.floor(minutes)} minute${Math.floor(minutes) !== 1 ? 's' : ''} ago`;
+  }
+
+  const hours = minutes / 60;
+  if (hours < 24) {
+    return `${Math.floor(hours)} hour${Math.floor(hours) !== 1 ? 's' : ''} ago`;
+  }
+
+  const days = hours / 24;
+  if (days < 30) {
+    return `${Math.floor(days)} day${Math.floor(days) !== 1 ? 's' : ''} ago`;
+  }
+
+  const months = days / 30;
+  if (months < 12) {
+    return `${Math.floor(months)} month${Math.floor(months) !== 1 ? 's' : ''} ago`;
+  }
+
+  const years = months / 12;
+  return `${Math.floor(years)} year${Math.floor(years) !== 1 ? 's' : ''} ago`;
+}
+
 async function displayPosts() {
   const postArea = document.getElementById("postAreaId");
   postArea.innerHTML = "";
 
-  const querySnapshot = await getDocs(collection(db, "posts"));
+  const q = query(collection(db, "posts"), orderBy("timestamp"));
 
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach(async (data) => {
-    // console.log(data)
-    var useruid = data.data().uniqueid;
+    try {
+      var useruid = data.data().uniqueid;
+      const docRef = doc(db, "user", useruid);
+      const docSnap = await getDoc(docRef);
 
-    const docRef = doc(db, "user", useruid);
-    const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        var againdata = docSnap.data();
+        var div = document.createElement("div");
+        div.className = "post";
+        let deleteoredittruefalse;
 
-    if (docSnap.exists()) {
-      var againdata = docSnap.data();
-      // console.log(data.data());
-      var div = document.createElement("div");
-      div.className = "post";
-      let deleteoredittruefalse;
-      // console.log(isLoggedInUser);
-      if (data.data().uniqueid == isLoggedInUser.uid) {
-        deleteoredittruefalse = `<div class="deleteoreditdiv">
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-                <ul class="deleteoreditdropdown">
-                  <li onclick="openeditmodalfoo('${data.id}')">Edit</li>
-                  <li onclick="deletepostfoo('${data.id}')">Delete</li>
-                </ul>
-              </div>`
+        if (data.data().uniqueid == isLoggedInUser.uid) {
+          deleteoredittruefalse = `<div class="deleteoreditdiv">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+            <ul class="deleteoreditdropdown">
+              <li onclick="openeditmodalfoo('${data.id}')">Edit</li>
+              <li onclick="deletepostfoo('${data.id}')">Delete</li>
+            </ul>
+          </div>`;
+        }
+
+        var profilePicSrc = againdata.profilepic ? againdata.profilepic : "https://firebasestorage.googleapis.com/v0/b/social-media-app-7593f.appspot.com/o/images%2Favatar.png?alt=media&token=eb081e88-6772-4d92-85a5-a623b4671927";
+
+        // Get the Firestore Timestamp object from the document
+        const timestamp = data.data().timestamp;
+        // Use the timeAgo() function to calculate the time difference
+        const timeDifferenceString = timeAgo(timestamp);
+
+        div.innerHTML = `
+          <div class="firstdivofpost">
+            <div class="imgarea">
+              <img src="${profilePicSrc}" class="postimg loginuserpostimage" alt="">
+            </div>
+            <div class="colomnwalakam">
+              <div class="span1offirslline">${againdata.iFirstName} ${againdata.iSurnameName}</div>
+              <div class="span2offirslline">${data.data().email}</div>
+              <div class="span3offirslline">${timeDifferenceString}</div>
+            </div>
+            ${deleteoredittruefalse || ""}
+          </div>
+          <div class="seconddivofpost">${data.data().content}</div>
+          <div class="thirddivofpost">
+            <span><i class="fa-regular gapfromside fa-heart"></i>PHOTOS</span>
+            <span><i class="fa-solid fa-share-from-square"></i>SHARE</span>
+            <span><i class="fa-regular gapfromside fa-comment-dots"></i>COMMENT</span>
+          </div>
+        `;
+        postArea.prepend(div);
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
       }
-
-      var profilePicSrc = againdata.profilepic ? againdata.profilepic : "https://firebasestorage.googleapis.com/v0/b/social-media-app-7593f.appspot.com/o/images%2Favatar.png?alt=media&token=eb081e88-6772-4d92-85a5-a623b4671927";
-
-      div.innerHTML = `
-        <div class="firstdivofpost">
-          <div class="imgarea">
-            <img src="${profilePicSrc}" class="postimg loginuserpostimage" alt="">
-          </div>
-          <div class="colomnwalakam">
-            <div class="span1offirslline">${againdata.iFirstName} ${againdata.iSurnameName}</div>
-            <div class="span2offirslline">${data.data().email}</div>
-            <div class="span3offirslline">${data.data().date} in milisecond </div>
-          </div>
-          ${deleteoredittruefalse || ""}
-        </div>
-        <div class="seconddivofpost">${data.data().content}</div>
-        <div class="thirddivofpost">
-          <span><i class="fa-regular gapfromside fa-heart"></i>PHOTOS</span>
-          <span><i class="fa-solid fa-share-from-square"></i>SHARE</span>
-          <span><i class="fa-regular gapfromside fa-comment-dots"></i>COMMENT</span>
-        </div>
-      `;
-      postArea.prepend(div);
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
+    } catch (error) {
+      console.error(error);
     }
   });
 }

@@ -1,6 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getFirestore, collection,deleteDoc ,updateDoc, doc, setDoc, addDoc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+// firestore
+import { getFirestore,serverTimestamp ,orderBy, collection,deleteDoc ,updateDoc, doc, setDoc, addDoc, query, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+// Authentication
 import { getAuth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+// Firebase Storage where file and images uploads
 import { getStorage, ref , getDownloadURL, uploadBytes  } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -20,8 +23,11 @@ export {
   app,
   db,
   collection,
+  serverTimestamp,
+  orderBy,
   addDoc,
   doc,
+  query,
   setDoc,
   getDocs,
   getFirestore,

@@ -195,8 +195,6 @@ async function displayUsers() {
 }
 
 
-// Call thecurrentuserisloggedin to check if the user is logged in and set the isLoggedInUser variable
 thecurrentuserisloggedin();
 
-// Call displayUsers to fetch and display user data
 displayUsers();
