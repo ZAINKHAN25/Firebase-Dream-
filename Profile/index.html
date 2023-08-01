@@ -16,7 +16,7 @@
   <div class="body">
     <!-- navbar -->
     <nav class="navbar">
-      <a class="navbar-brand" style="font-size: 35px; font-weight: bold;" href="#">DREAM</a>
+      <a class="navbar-brand" style="font-size: 35px; font-weight: bold;" href="../index.html">DREAM</a>
       <div class="searchArea">
         <input type="text" class="inputtextsearch" placeholder="search here">
         <input type="button" class="search" value="Search">
@@ -24,18 +24,59 @@
       <div class="alagchezen">
         <a class="nav-link active" href="../Dashbord/index.html">Home</a>
         <a class="nav-link active" href="#">My Profile</a>
-        <a class="nav-link dropdown-toggle" onclick="navbarScrollingDropdown()">
+        <a class="nav-link dropdown-toggle navbarScrollingDropdowntag">
           <i class="fa-solid fa-caret-down"></i>
-          <img style="z-index: 13;" src="../assests/avatar.png" class="avatarDummy" alt="">
+          <img style="z-index: 13;" src="../assests/avatar.png" class="avatarDummy loginpersonpic loginuserpostimage" alt="">
+
           <div class="dropdownkeclickperanewalelist">
-            <a class="dropdown-item none" onclick="logout()">Logout</a>
-            <a class="dropdown-item none">ABOUT</a>
+            <a class="dropdown-item none logoutbtn">Logout</a>
+            <a href="../All Users/index.html" class="dropdown-item none">All users</a>
             <a class="dropdown-item none">SHORTS</a>
-            <a class="dropdown-item none">NEWS</a>
+            <a href="../editprofile/index.html" class="dropdown-item none">Edit Profile</a>
           </div>
         </a>
       </div>
     </nav>
+
+
+    <!-- ... -->
+    <div class="modaltwoboy none">
+      <div class="twomodal">
+        <input id="profileImageInput" onchange="updateLoginProfile(event)" type="file">
+        <input class="closeModalTwoBtn"
+          style="background: rgb(0, 242, 255); color: white;width: 40%; border-radius: 8px; border: none; height: 30px;"
+          type="button" value="Close">
+      </div>
+    </div>
+    <!-- ... -->
+
+
+    <div class="modalbodyofedit none">
+      <div class="modalofedit">
+        <div class="editdeleteoffirstline">
+
+          <img src="../assests/avatar.png" class="loginpersonpic editdeleteofimg loginuserpostimage" alt="">
+          <div class="infonamemodalofeditdelete">
+            <h2>ZAIN MATINDA</h2>
+            <p>@ZAIN</p>
+          </div>
+
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <textarea class="form-control" id="editpostInputBox"
+                style="padding: 5px; width: 100%; height: 100px; background-color: rgb(255, 255, 255);"
+                placeholder="What do you want to talk about"></textarea>
+            </div>
+          </form>
+        </div>
+
+        <input class="closebtnofedit" onclick="removeeditmodalfoo()" type="button" value="Close">
+        <input class="editbtn" onclick="editpostfoo()" type="button" value="Edit">
+      </div>
+    </div>  
 
     <div class="modalbody none">
 
@@ -44,7 +85,7 @@
 
         <div class="firstline">
 
-          <img src="../assests/avatar.png" class="postwalatasweer" alt="">
+          <img src="../assests/avatar.png" class="postwalatasweer loginpersonpic loginuserpostimage" alt="">
           <div class="infonamemodal">
             <h2>ZAIN MATINDA</h2>
             <p>@ZAIN</p>
@@ -62,8 +103,8 @@
           </form>
         </div>
 
-        <input class="no1pagalhaiyebutton" type="button" onclick="removemodalfoo()" value="Close">
-        <input class="no2pagalhaiyebutton" type="button" value="Post" onclick="postHandler()">
+        <input class="no1pagalhaiyebutton" type="button" value="Close">
+        <input class="no2pagalhaiyebutton" type="button" value="Post">
 
       </div>
 
@@ -75,7 +116,9 @@
 
         <div class="boxStylekabhai">
           <center>
-            <img src="../assests/avatar.png" class="profilePictureuppperwala" alt="">
+            <img id="profilePicture" src="../assests/avatar.png"
+              class="profilePictureuppperwala loginpersonpic oipensecondmodalbtn loginuserpostimage" alt="">
+
             <h5 id="userName" style="margin-top: 60px; font-size: xx-large;">User Name</h5>
             <h5 id="emailAddress" class="aikhiclass">User Email</h5>
             <h6 id="mobNum" class="aikhiclass">User Mobile Number</h6>
@@ -85,27 +128,26 @@
         </div>
         <div class="boxstylekabhaikabhai">
           <div onmouseleave="autobackgroundfoo('housei')" onmouseover="bgmovewalafoo('housei')" class="hoverwaladiv"><i
-              class="fa-solid housei fa-house"></i>Home</div>
-          <div onmouseleave="autobackgroundfoo('hashtagi')" onmouseover="bgmovewalafoo('hashtagi')"
-            class="hoverwaladiv"><i class="fa-solid hashtagi fa-hashtag"></i>Explore</div>
-          <div onmouseleave="autobackgroundfoo('belli')" onmouseover="bgmovewalafoo('belli')" class="hoverwaladiv"><i
-              class="fa-solid belli fa-bell"></i>Notification</div>
-          <div onmouseleave="autobackgroundfoo('envelopei')" onmouseover="bgmovewalafoo('envelopei')"
-            class="hoverwaladiv"><i class="fa-solid envelopei fa-envelope"></i>Messages</div>
-          <div onmouseleave="autobackgroundfoo('bookmarki')" onmouseover="bgmovewalafoo('bookmarki')"
-            class="hoverwaladiv"><i class="fa-regular bookmarki fa-bookmark"></i>Bookmarks</div>
-          <div onmouseleave="autobackgroundfoo('hearti')" onmouseover="bgmovewalafoo('hearti')" class="hoverwaladiv"><i
-              class="fa-solid hearti fa-heart"></i>Favourite</div>
-          <div onmouseleave="autobackgroundfoo('useri')" onmouseover="bgmovewalafoo('useri')" class="hoverwaladiv"><i
-              class="fa-solid useri fa-user-group"></i>Groups</div>
+            class="fa-solid housei fa-house"></i>Home</div>
+        <div onmouseleave="autobackgroundfoo('hashtagi')" onmouseover="bgmovewalafoo('hashtagi')"
+          class="hoverwaladiv"><i class="fa-solid hashtagi fa-hashtag"></i>Explore</div>
+        <div onmouseleave="autobackgroundfoo('belli')" onmouseover="bgmovewalafoo('belli')" class="hoverwaladiv"><i
+            class="fa-solid belli fa-bell"></i>Notification</div>
+        <div onmouseleave="autobackgroundfoo('envelopei')" onmouseover="bgmovewalafoo('envelopei')"
+          class="hoverwaladiv"><i class="fa-solid envelopei fa-envelope"></i>Messages</div>
+        <div onmouseleave="autobackgroundfoo('bookmarki')" onmouseover="bgmovewalafoo('bookmarki')"
+          class="hoverwaladiv"><i class="fa-regular bookmarki fa-bookmark"></i>Bookmarks</div>
+        <div onmouseleave="autobackgroundfoo('hearti')" onmouseover="bgmovewalafoo('hearti')" class="hoverwaladiv"><i
+            class="fa-solid hearti fa-heart"></i>Favourite</div>
+        <div onmouseleave="autobackgroundfoo('useri')" onmouseover="bgmovewalafoo('useri')" class="hoverwaladiv"><i
+            class="fa-solid useri fa-user-group"></i>Groups</div>
         </div>
       </div>
       <div class="boxStyle">
         <div class="postInputArea">
           <div class="firstlineofpostinputar">
-            <img src="../assests/avatar.png" class="profilePicture" alt="">
-            <input onclick="openmodalfoo()" placeholder="Create a new post" id="nikalnahhai" type="text"
-              class="postInput">
+            <img src="../assests/avatar.png" class="profilePicture loginpersonpic loginuserpostimage" alt="">
+            <input placeholder="Create a new post" id="nikalnahhai" type="text" class="postInput openmodalofpostimgbtn">
           </div>
           <div class="secondlineofpostinputar">
             <span><i class="fa-solid gapfromside fa-image"></i>PHOTOS</span>
@@ -128,7 +170,13 @@
                 <div class="span2offirslline">No description added</div>
                 <div class="span3offirslline">5 hours ago</div>
               </div>
-
+              <div class="deleteoreditdiv">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+                <ul class="deleteoreditdropdown">
+                  <li>Edit</li>
+                  <li>Delete</li>updatedoption
+                </ul>
+              </div>
             </div>
 
 
@@ -186,7 +234,7 @@
         </div>
         <div class="thirdareasecondline">
           <h2 style="margin-bottom: 15px;">Request</h2>
-          
+
           <div class="requestdiv">
 
             <div class="firstdivofthirdaradiv">
@@ -199,7 +247,7 @@
 
             <div class="acceptOrDenied">
               <input style="background: #05B6C1;" type="button" value="Accept">
-              <input style="background: rgba(0, 81, 86, 0.5);;" type="button" value="Denied">
+              <input style="background: rgba(0, 81, 86, 0.5);" type="button" value="Denied">
             </div>
           </div>
         </div>
@@ -208,8 +256,8 @@
 
   </div>
   </div>
-
-  <script src="app.js"></script>
+  <script src="app2.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 
 </html>
